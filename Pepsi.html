@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pepsi Timer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Anton', sans-serif;
+      background: #00205b;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    img.logo {
+      max-width: 150px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ca1f2a;
+      margin: 0.3em 0;
+    }
+
+    .timer {
+      font-size: 1.5em;
+      margin-top: 1em;
+      background: white;
+      color: #00205b;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .timer {
+        font-size: 1.2em;
+        padding: 12px;
+      }
+
+      img.logo {
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://media.discordapp.net/attachments/1112005659584630818/1385889886728618094/Pepsi_2023.svg.png?ex=6857b609&is=68566489&hm=7e0937c03c21a2e9bd343f190ac896ec3d4a4a2905c8225a1f331f33932ac574&=&format=webp&quality=lossless" alt="Pepsi Logo" class="logo">
+    <h1>Da quanto ho la mia Pepsi dentro al frigo</h1>
+    <div class="timer" id="timer">
+      Calcolo in corso...
+    </div>
+    <div class="footer">
+      Pepsi® è un marchio registrato di PepsiCo, Inc. | Timer personale non ufficiale
+    </div>
+  </div>
+
+  <script>
+    const startDate = new Date('2022-01-11T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * 1000 * 60 * 60 * 24;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * 1000 * 60 * 60;
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * 1000 * 60;
+      const seconds = Math.floor(diff / 1000);
+
+      document.getElementById('timer').innerText = 
+        `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
